@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Certificate||Achivement</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+  <link rel="shortcut icon" href="./images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="android-touch-icon" sizes="36x36" href="./images/favicon/android-icon-36x36.png">
+    <link rel="android-touch-icon" sizes="48x48" href="./images/favicon/android-icon-48x48.png">
+    <link rel="android-touch-icon" sizes="96x96" href="./images/favicon/android-icon-96x96.png">
+    <link rel="android-touch-icon" sizes="72x72" href="./images/favicon/android-icon-72x72.png">
+    <link rel="android-touch-icon" sizes="144x144" href="./images/favicon/android-icon-144x144.png">
+    <link rel="android-touch-icon" sizes="192x192" href="./images/favicon/android-icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#59523f">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/load.css">
+</head>
+<body>
+  <div class="gall-loader">
+    <canvas id="c"></canvas>
+
+     <marquee direction="up"> <h2 class="h21">!  While page is loading  !</h2>
+      <h2 class="h22">move your mouse</h2></marquee>
+    <script>
+  
+      const canvas = document.querySelector("#c");
+      const c = canvas.getContext("2d");
+      const particlesArray = [];
+      let hue = 0;
+  
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+  
+      resizeCanvas();
+  
+      window.addEventListener("resize", resizeCanvas);
+  
+      canvas.addEventListener("mousemove", (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+  
+        for (let i = 0; i < 5; i++) {
+          const p = new particle();
+          particlesArray.push(p);
+        }
+      });
+  
+      canvas.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+  
+        for (let i = 0; i < 5; i++) {
+          const p = new particle();
+          particlesArray.push(p);
+        }
+      });
+  
+      //mouse/touch
+      const mouse = {
+        x: undefined,
+        y: undefined
+      };
+  
+      //particle
+      const particle = function () {
+        this.x = mouse.x;
+        this.y = mouse.y;
+        this.size = Math.random() * 15 + 1;
+        this.velocityX = Math.random() * 3 - 1.5;
+        this.velocityY = Math.random() * 3 - 1.5;
+        this.color = `hsl(${hue}, 100%, 50%)`;
+  
+        this.update = function () {
+          this.x += this.velocityX;
+          this.y += this.velocityY;
+          if (this.size > 0.4) this.size -= 0.1;
+        };
+        this.draw = function () {
+          c.strokeStyle = this.color;
+          c.lineWidth = 2;
+          c.beginPath();
+          c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          c.stroke();
+        };
+      };
+  
+      function animate() {
+        c.fillStyle = "rgba(0,0,0,0.09)";
+        c.fillRect(0, 0, canvas.width, canvas.height);
+  
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+          particlesArray[i].draw();
+  
+          if (particlesArray[i].size <= 0.5) {
+            particlesArray.splice(i, 1);
+            i--;
+            for (let j = i; j < particlesArray.length; j++) {
+              try {
+                const dx = particlesArray[i].x - particlesArray[j].x;
+                const dy = particlesArray[i].y - particlesArray[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+  
+                if (distance < 100) {
+                  c.beginPath();
+                  c.lineWidth = particlesArray[i].size;
+                  c.moveTo(particlesArray[i].x, particlesArray[i].y);
+                  c.lineTo(particlesArray[j].x, particlesArray[j].y);
+                  c.stroke();
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            }
+          }
+        }
+  
+        hue++;
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+ // Wait for the page to load
+ window.addEventListener('load', function () {
+      // Hide the preloader when the page is fully loaded
+      document.querySelector('.gall-loader').style.display = 'none';
+
+    });
+    </script>
+  </div>
+  <!-- ======================================== 
+        header Section Start  
+    ========================================  -->
+  <header class="header">
+    <img src="images/logo-min.png" alt="thapa technical logo" class="logo" />
+    <img src="images/summoon.jpg" alt="summoon img" id="icon">
+    <nav class="navbar">
+      <ul class="navbar-lists">
+        <li>
+          <a class="navbar-link home-link" href="/index.html" id="">Home</a>
+        </li>
+        <li>
+          <a class="navbar-link about-link" href="/about.html">About</a>
+        </li>
+        <li>
+          <a class="navbar-link service-link" href="/service.html"
+            >Services</a
+          >
+        </li>
+        <li>
+          <a class="navbar-link portfolio-link" href="/certificate.html"
+            >Certificae</a
+          >
+        </li>
+        <li>
+          <a class="navbar-link" href="/contact.html" target="_blank"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="mobile-navbar-btn">
+      <ion-icon name="menu-outline" class="mobile-nav-icon"></ion-icon>
+
+      <ion-icon name="close-outline" class="mobile-nav-icon"></ion-icon>
+    </div>
+  </header>
+<!-- ======================================== 
+       image gallery Section Start  
+    ========================================  -->
+  <section class="section section-gallary">
+    <div class="container">
+      <div class="py-5">
+        <h1 class="text-center display-3" data-aos="flip-up" data-aos-duration="600">Achivement Gallery</h1>
+        <p data-aos="flip-left" data-aos-duration="600" >
+         This is gallery of my Achivement(In Many Skills)/certificate(By~Google,IBM,HackerRank,Isro,Tcs,Cissco,Facebook,Sololearn,ProgrammingHub and so many tech company's) Enter Skill name here and search 300+ certificate i have but here i show 200+
+        </p>
+      </div>
+      <div data-aos="flip-right" data-aos-duration="500" class="search-box">
+        <input type="text" class="form-control" id="searchInput" placeholder="eXample: AI , C++ , singing , rapping ...">
+      </div>
+      <div data-aos="flip-down" data-aos-duration="500" class="row no-gutters gallerys">
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="sql advance hackerrank">
+          <a href="./certificate/1hackeranksqladv.png" target="_blank">
+            <img src="./certificate/1hackeranksqladv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="c# hackerrank c sharp">
+          <a href="./certificate/2hackerrankcsharp.png" target="_blank">
+            <img src="./certificate/2hackerrankcsharp.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="java hackerrank">
+          <a href="./certificate/3hackerrankjava.png" target="_blank">
+            <img src="./certificate/3hackerrankjava.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="python for data science ibm">
+          <a href="./certificate/4ibmpyfordatascience.jpg" target="_blank">
+            <img src="./certificate/4ibmpyfordatascience.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="html css cisco nasscom">
+          <a href="./certificate/5ciscohtmlcss.jpg" target="_blank">
+            <img src="./certificate/5ciscohtmlcss.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="isro geo-web service gorverment">
+          <a href="./certificate/6isroglobalgeo.jpg" target="_blank">
+            <img src="./certificate/6isroglobalgeo.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="python hackerrank">
+          <a href="./certificate/7hackerrankpy.png" target="_blank">
+            <img src="./certificate/7hackerrankpy.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="problem solving hackerrank">
+          <a href="./certificate/8hackerrankproblemsol.png" target="_blank">
+            <img src="./certificate/8hackerrankproblemsol.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="sql hackerrank">
+          <a href="./certificate/9hackerranksql.png" target="_blank">
+            <img src="./certificate/9hackerranksql.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google tag manager">
+          <a href="./certificate/10googletagmanager.jpg" target="_blank">
+            <img src="./certificate/10googletagmanager.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="singing international competition">
+          <a href="./certificate/11singfirstpriz.jpg" target="_blank">
+            <img src="./certificate/11singfirstpriz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="naugauriya rapping competition">
+          <a href="./certificate/12rapfirst.jpg" target="_blank">
+            <img src="./certificate/12rapfirst.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="tcs dataplus mastercraft">
+          <a href="./certificate/13tcsmastercrft.jpg" target="_blank">
+            <img src="./certificate/13tcsmastercrft.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="skillup smplilearn python3">
+          <a href="./certificate/14skillupsmplilearn.png" target="_blank">
+            <img src="./certificate/14skillupsmplilearn.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google data stdio">
+          <a href="./certificate/15googledatastdio.jpg" target="_blank">
+            <img src="./certificate/15googledatastdio.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="nsdc itm google lets upgrade flutter">
+          <a href="./certificate/16letsupgflutter.jpg" target="_blank">
+            <img src="./certificate/16letsupgflutter.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="nsdc itm google lets upgrade javascript">
+          <a href="./certificate/17letsupgjs.jpg" target="_blank">
+            <img src="./certificate/17letsupgjs.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google analytics">
+          <a href="./certificate/18googleanalyitcs.jpg" target="_blank">
+            <img src="./certificate/18googleanalyitcs.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="cagnativ class sql rdbms ibm">
+          <a href="./certificate/19ibmsqlrdbms101.jpg" target="_blank">
+            <img src="./certificate/19ibmsqlrdbms101.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google nsdc itm lets upgrade html css">
+          <a href="./certificate/20letsupghtmlcss.jpg" target="_blank">
+            <img src="./certificate/20letsupghtmlcss.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="angular quiz w3">
+          <a href="./certificate/21angularquiz.jpg" target="_blank">
+            <img src="./certificate/21angularquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="singing rapping bollywood">
+          <a href="./certificate/22bollysingrap.png" target="_blank">
+            <img src="./certificate/22bollysingrap.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="w3 es6 ecamascript">
+          <a href="./certificate/23es6quiz.jpg" target="_blank">
+            <img src="./certificate/23es6quiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="w3 git">
+          <a href="./certificate/24gitquiz.jpg" target="_blank">
+            <img src="./certificate/24gitquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="javascript w3">
+          <a href="./certificate/25jsquiz.jpg" target="_blank">
+            <img src="./certificate/25jsquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="html w3">
+          <a href="./certificate/26htmlquiz.jpg" target="_blank">
+            <img src="./certificate/26htmlquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="react w3">
+          <a href="./certificate/27reactquiz.jpg" target="_blank">
+            <img src="./certificate/27reactquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="php w3">
+          <a href="./certificate/28phpquiz.jpg" target="_blank">
+            <img src="./certificate/28phpquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="css w3">
+          <a href="./certificate/29cssquiz.jpg" target="_blank">
+            <img src="./certificate/29cssquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="vue js w3">
+          <a href="./certificate/30viuquiz.jpg" target="_blank">
+            <img src="./certificate/30viuquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="sql w3">
+          <a href="./certificate/31sqlquiz.jpg" target="_blank">
+            <img src="./certificate/31sqlquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="typescript w3">
+          <a href="./certificate/32tsquiz.jpg" target="_blank">
+            <img src="./certificate/32tsquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="scss sass w3">
+          <a href="./certificate/33scssquiz.jpg" target="_blank">
+            <img src="./certificate/33scssquiz.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="code karo web development bootcamp">
+          <a href="./certificate/34ckwebdevbootcamp.jpg" target="_blank">
+            <img src="./certificate/34ckwebdevbootcamp.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="cursa redhat linux">
+          <a href="./certificate/35cursaredhat.png" target="_blank">
+            <img src="./certificate/35cursaredhat.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="game development python cursa">
+          <a href="./certificate/36cursapy.jpg" target="_blank">
+            <img src="./certificate/36cursapy.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="unstop coding competition">
+          <a href="./certificate/37codingcomp.jpg" target="_blank">
+            <img src="./certificate/37codingcomp.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="advance google analytics">
+          <a href="./certificate/38googleadvanceanlytics.jpg" target="_blank">
+            <img src="./certificate/38googleadvanceanlytics.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google analytics 360">
+          <a href="./certificate/39googleanlyitcs360.jpg" target="_blank">
+            <img src="./certificate/39googleanlyitcs360.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google analytics">
+          <a href="./certificate/40googleanylitcsbegg.jpg" target="_blank">
+            <img src="./certificate/40googleanylitcsbegg.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="network security">
+          <a href="./certificate/41itsolunetworksecirity.jpg" target="_blank">
+            <img src="./certificate/41itsolunetworksecirity.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google it automation python iitsonic">
+          <a href="./certificate/42itsolgogleautomation.jpg" target="_blank">
+            <img src="./certificate/42itsolgogleautomation.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="iitsonic artificial intelligence">
+          <a href="./certificate/43itsolartificalin.jpg" target="_blank">
+            <img src="./certificate/43itsolartificalin.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="edapt robotics">
+          <a href="./certificate/44edaptprogram.png" target="_blank">
+            <img src="./certificate/44edaptprogram.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="edapt self driving">
+          <a href="./certificate/45edaptselfdriving.jpg" target="_blank">
+            <img src="./certificate/45edaptselfdriving.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="edapt automation">
+          <a href="./certificate/46rdptautomation.png" target="_blank">
+            <img src="./certificate/46rdptautomation.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="gorverment ncert isea">
+          <a href="./certificate/47govprogram.jpg" target="_blank">
+            <img src="./certificate/47govprogram.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="great learning linux">
+          <a href="./certificate/48gratlearninglinux.jpg" target="_blank">
+            <img src="./certificate/48gratlearninglinux.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="great learning c# csharp">
+          <a href="./certificate/49greatlearncsharp.jpg" target="_blank">
+            <img src="./certificate/49greatlearncsharp.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="great learning ethical hacking">
+          <a href="./certificate/50greatlearninghacking.jpg" target="_blank">
+            <img src="./certificate/50greatlearninghacking.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="nsdc itm google python machine learning">
+          <a href="./certificate/51letsupgmlpy.jpg" target="_blank">
+            <img src="./certificate/51letsupgmlpy.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="python lets upgrade nsdc itm google">
+          <a href="./certificate/52letsupgpy.jpg" target="_blank">
+            <img src="./certificate/52letsupgpy.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="learntube jsx bootstrap">
+          <a href="./certificate/53jsxbootsrap.jpg" target="_blank">
+            <img src="./certificate/53jsxbootsrap.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="open weaver html css">
+          <a href="./certificate/54htmlcssopenwe.png" target="_blank">
+            <img src="./certificate/54htmlcssopenwe.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="singing rajshmi film institute competition">
+          <a href="./certificate/55singrajsmimumbai.jpg" target="_blank">
+            <img src="./certificate/55singrajsmimumbai.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="zoom crazybig entertainment singing competition">
+          <a href="./certificate/56singzoom.jpg" target="_blank">
+            <img src="./certificate/56singzoom.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="open weaver javascript">
+          <a href="./certificate/57openwevjs.png" target="_blank">
+            <img src="./certificate/57openwevjs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="open weaver python">
+          <a href="./certificate/58openwevpybasic.png" target="_blank">
+            <img src="./certificate/58openwevpybasic.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="sangeet sartaj singing competition">
+          <a href="./certificate/59singcompi.jpg" target="_blank">
+            <img src="./certificate/59singcompi.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="imran supermelody international singing">
+          <a href="./certificate/60singimr.jpg" target="_blank">
+            <img src="./certificate/60singimr.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="love audition singing pawan singh">
+          <a href="./certificate/61singpawan.jpg" target="_blank">
+            <img src="./certificate/61singpawan.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="dixita event singing competition">
+          <a href="./certificate/62singdixitevent.jpg" target="_blank">
+            <img src="./certificate/62singdixitevent.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn game development with js">
+          <a href="./certificate/63sologamedevjs.jpg" target="_blank">
+            <img src="./certificate/63sologamedevjs.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn react and redux">
+          <a href="./certificate/64soloreactredux.jpg" target="_blank">
+            <img src="./certificate/64soloreactredux.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn angular nestjs">
+          <a href="./certificate/65soloangularnestjs.jpg" target="_blank">
+            <img src="./certificate/65soloangularnestjs.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="international imran competition singing">
+          <a href="./certificate/66singimranmo3.jpg" target="_blank">
+            <img src="./certificate/66singimranmo3.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn ruby">
+          <a href="./certificate/67soloruby.jpg" target="_blank">
+            <img src="./certificate/67soloruby.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn c# csharp">
+          <a href="./certificate/68solocsharp.jpg" target="_blank">
+            <img src="./certificate/68solocsharp.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn c++ cplusplus">
+          <a href="./certificate/69soloc++.jpg" target="_blank">
+            <img src="./certificate/69soloc++.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn swift4">
+          <a href="./certificate/70soloswift4.jpg" target="_blank">
+            <img src="./certificate/70soloswift4.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="international competition singing">
+          <a href="./certificate/71singimran.jpg" target="_blank">
+            <img src="./certificate/71singimran.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="singing international competition">
+          <a href="./certificate/72singimran2.jpg" target="_blank">
+            <img src="./certificate/72singimran2.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="golden voice singing competition">
+          <a href="./certificate/73singcomp.jpg" target="_blank">
+            <img src="./certificate/73singcomp.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn sql">
+          <a href="./certificate/74solosql.jpg" target="_blank">
+            <img src="./certificate/74solosql.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn python core">
+          <a href="./certificate/75solopycore.jpg" target="_blank">
+            <img src="./certificate/75solopycore.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn javascript">
+          <a href="./certificate/76solojs.jpg" target="_blank">
+            <img src="./certificate/76solojs.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn java">
+          <a href="./certificate/77solojava.jpg" target="_blank">
+            <img src="./certificate/77solojava.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn go">
+          <a href="./certificate/78sololearngo.jpg" target="_blank">
+            <img src="./certificate/78sololearngo.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="php Sololearn">
+          <a href="./certificate/79solophp.jpg" target="_blank">
+            <img src="./certificate/79solophp.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="responsive web design Sololearn">
+          <a href="./certificate/80soloresponsivweb.jpg" target="_blank">
+            <img src="./certificate/80soloresponsivweb.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="rprogramming Sololearn">
+          <a href="./certificate/81solorlang.jpg" target="_blank">
+            <img src="./certificate/81solorlang.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn jquery">
+          <a href="./certificate/82solojquery.jpg" target="_blank">
+            <img src="./certificate/82solojquery.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn css">
+          <a href="./certificate/83solocss.jpg" target="_blank">
+            <img src="./certificate/83solocss.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn kotlin">
+          <a href="./certificate/84solokotlin.jpg" target="_blank">
+            <img src="./certificate/84solokotlin.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="singing competition international">
+          <a href="./certificate/85singimran.jpg" target="_blank">
+            <img src="./certificate/85singimran.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn coding for marketers">
+          <a href="./certificate/86solocodingformarketers.jpg" target="_blank">
+            <img src="./certificate/86solocodingformarketers.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="html Sololearn">
+          <a href="./certificate/87solohtml.jpg" target="_blank">
+            <img src="./certificate/87solohtml.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn cprogramming">
+          <a href="./certificate/88soloclang.jpg" target="_blank">
+            <img src="./certificate/88soloclang.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="Sololearn machine learning">
+          <a href="./certificate/89soloml.jpg" target="_blank">
+            <img src="./certificate/89soloml.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="cyber security google programminghub Facebook">
+          <a href="./certificate/90cybersecurity.png" target="_blank">
+            <img src="./certificate/90cybersecurity.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook solidity">
+          <a href="./certificate/91solidity.png" target="_blank">
+            <img src="./certificate/91solidity.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook software engineering">
+          <a href="./certificate/92softengineering.png" target="_blank">
+            <img src="./certificate/92softengineering.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook artificial intelligence">
+          <a href="./certificate/93artificalinteligence.png" target="_blank">
+            <img src="./certificate/93artificalinteligence.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook bootstrap">
+          <a href="./certificate/94bootstrap[fram.png" target="_blank">
+            <img src="./certificate/94bootstrap[fram.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook cadvance">
+          <a href="./certificate/95cadvance.png" target="_blank">
+            <img src="./certificate/95cadvance.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook cprogramming">
+          <a href="./certificate/96cprogramming.png" target="_blank">
+            <img src="./certificate/96cprogramming.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook c# csharp">
+          <a href="./certificate/97csharp.png" target="_blank">
+            <img src="./certificate/97csharp.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook c++advance cplusplus">
+          <a href="./certificate/98cplusplusadv.png" target="_blank">
+            <img src="./certificate/98cplusplusadv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook c++ cplusplus">
+          <a href="./certificate/99cplusplus.png" target="_blank">
+            <img src="./certificate/99cplusplus.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook dart">
+          <a href="./certificate/100dart.png" target="_blank">
+            <img src="./certificate/100dart.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook data stricture algorithem">
+          <a href="./certificate/101dsa.png" target="_blank">
+            <img src="./certificate/101dsa.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook DevOps">
+          <a href="./certificate/102devops.png" target="_blank">
+            <img src="./certificate/102devops.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook flutter">
+          <a href="./certificate/103flutter.png" target="_blank">
+            <img src="./certificate/103flutter.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook go">
+          <a href="./certificate/104golang.png" target="_blank">
+            <img src="./certificate/104golang.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook html advance">
+          <a href="./certificate/105htmladv.png" target="_blank">
+            <img src="./certificate/105htmladv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook java advance">
+          <a href="./certificate/106javaadv.png" target="_blank">
+            <img src="./certificate/106javaadv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook javascript advance">
+          <a href="./certificate/107jsadv.png" target="_blank">
+            <img src="./certificate/107jsadv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook kotlin androide">
+          <a href="./certificate/108kotlinandroid.png" target="_blank">
+            <img src="./certificate/108kotlinandroid.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook mongodb">
+          <a href="./certificate/109mongodb.png" target="_blank">
+            <img src="./certificate/109mongodb.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook php">
+          <a href="./certificate/110php.png" target="_blank">
+            <img src="./certificate/110php.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook postgresql">
+          <a href="./certificate/111postgrsql.png" target="_blank">
+            <img src="./certificate/111postgrsql.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook python advance">
+          <a href="./certificate/112pyadv.png" target="_blank">
+            <img src="./certificate/112pyadv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook data science">
+          <a href="./certificate/113datascience.png" target="_blank">
+            <img src="./certificate/113datascience.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook firebase">
+          <a href="./certificate/114firebass.png" target="_blank">
+            <img src="./certificate/114firebass.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook jquery">
+          <a href="./certificate/115jquery.png" target="_blank">
+            <img src="./certificate/115jquery.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook react native">
+          <a href="./certificate/116reactnative.png" target="_blank">
+            <img src="./certificate/116reactnative.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook ruby">
+          <a href="./certificate/117ruby.png" target="_blank">
+            <img src="./certificate/117ruby.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook swift">
+          <a href="./certificate/118swift.png" target="_blank">
+            <img src="./certificate/118swift.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook typescript">
+          <a href="./certificate/119ts.png" target="_blank">
+            <img src="./certificate/119ts.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook unity">
+          <a href="./certificate/120unity.png" target="_blank">
+            <img src="./certificate/120unity.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook expressjs">
+          <a href="./certificate/121expressjs.png" target="_blank">
+            <img src="./certificate/121expressjs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook iot">
+          <a href="./certificate/122iot.png" target="_blank">
+            <img src="./certificate/122iot.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook seo">
+          <a href="./certificate/123seo.png" target="_blank">
+            <img src="./certificate/123seo.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook rprogramming">
+          <a href="./certificate/124r.png" target="_blank">
+            <img src="./certificate/124r.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook deno">
+          <a href="./certificate/125deno.png" target="_blank">
+            <img src="./certificate/125deno.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook angularjs">
+          <a href="./certificate/126angularjs.png" target="_blank">
+            <img src="./certificate/126angularjs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook css">
+          <a href="./certificate/127css.png" target="_blank">
+            <img src="./certificate/127css.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook hacking">
+          <a href="./certificate/128ehacking.png" target="_blank">
+            <img src="./certificate/128ehacking.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook html">
+          <a href="./certificate/129html.png" target="_blank">
+            <img src="./certificate/129html.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook java">
+          <a href="./certificate/130java.png" target="_blank">
+            <img src="./certificate/130java.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook javascript">
+          <a href="./certificate/131js.png" target="_blank">
+            <img src="./certificate/131js.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook kotlin advance">
+          <a href="./certificate/132kotlin.png" target="_blank">
+            <img src="./certificate/132kotlin.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook grothhacking">
+          <a href="./certificate/133grothhack.png" target="_blank">
+            <img src="./certificate/133grothhack.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook big data">
+          <a href="./certificate/134bigdata.png" target="_blank">
+            <img src="./certificate/134bigdata.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook kotlin">
+          <a href="./certificate/135kotlincore.png" target="_blank">
+            <img src="./certificate/135kotlincore.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook machine learning">
+          <a href="./certificate/136ml.png" target="_blank">
+            <img src="./certificate/136ml.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook python">
+          <a href="./certificate/137py.png" target="_blank">
+            <img src="./certificate/137py.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook sql">
+          <a href="./certificate/138sql.png" target="_blank">
+            <img src="./certificate/138sql.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook software testing">
+          <a href="./certificate/139softtewsting.png" target="_blank">
+            <img src="./certificate/139softtewsting.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook python3">
+          <a href="./certificate/140py3.png" target="_blank">
+            <img src="./certificate/140py3.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook django">
+          <a href="./certificate/141django.png" target="_blank">
+            <img src="./certificate/141django.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook vuejs">
+          <a href="./certificate/142vuejs.png" target="_blank">
+            <img src="./certificate/142vuejs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook flask">
+          <a href="./certificate/143flask.png" target="_blank">
+            <img src="./certificate/143flask.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook redis">
+          <a href="./certificate/144redis.png" target="_blank">
+            <img src="./certificate/144redis.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook emberjs">
+          <a href="./certificate/145emberjs.png" target="_blank">
+            <img src="./certificate/145emberjs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook docker">
+          <a href="./certificate/146docker.png" target="_blank">
+            <img src="./certificate/146docker.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook nodejs">
+          <a href="./certificate/147nodejs.png" target="_blank">
+            <img src="./certificate/147nodejs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook nextjs">
+          <a href="./certificate/148nextjs.png" target="_blank">
+            <img src="./certificate/148nextjs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook react development">
+          <a href="./certificate/149reactdev.png" target="_blank">
+            <img src="./certificate/149reactdev.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="elm google programminghub Facebook">
+          <a href="./certificate/150elm.png" target="_blank">
+            <img src="./certificate/150elm.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook git">
+          <a href="./certificate/151git.png" target="_blank">
+            <img src="./certificate/151git.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook assembly8086">
+          <a href="./certificate/152assembly.png" target="_blank">
+            <img src="./certificate/152assembly.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook backbonejs">
+          <a href="./certificate/153backbonejs.png" target="_blank">
+            <img src="./certificate/153backbonejs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook blockchain">
+          <a href="./certificate/154blockchain.png" target="_blank">
+            <img src="./certificate/154blockchain.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook blumacss">
+          <a href="./certificate/155blumacss.png" target="_blank">
+            <img src="./certificate/155blumacss.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook computer vision python">
+          <a href="./certificate/156comvisionpy.png" target="_blank">
+            <img src="./certificate/156comvisionpy.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook cryptography">
+          <a href="./certificate/157cryptography.png" target="_blank">
+            <img src="./certificate/157cryptography.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook edge computing">
+          <a href="./certificate/158edgecomp.png" target="_blank">
+            <img src="./certificate/158edgecomp.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook electronjs">
+          <a href="./certificate/159electronjs.png" target="_blank">
+            <img src="./certificate/159electronjs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook erp system">
+          <a href="./certificate/160erpsystem.png" target="_blank">
+            <img src="./certificate/160erpsystem.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook fundamentals">
+          <a href="./certificate/161fundamentals.png" target="_blank">
+            <img src="./certificate/161fundamentals.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook hyperledger fabric">
+          <a href="./certificate/162hyperleger.png" target="_blank">
+            <img src="./certificate/162hyperleger.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook graphql">
+          <a href="./certificate/163graphql.png" target="_blank">
+            <img src="./certificate/163graphql.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook itbasic">
+          <a href="./certificate/164itbasc.png" target="_blank">
+            <img src="./certificate/164itbasc.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook java hibernate">
+          <a href="./certificate/165javahibernate.png" target="_blank">
+            <img src="./certificate/165javahibernate.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook jsp servlets">
+          <a href="./certificate/166jsp&servlet.png" target="_blank">
+            <img src="./certificate/166jsp&servlet.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook ipv4 networking">
+          <a href="./certificate/167ipv4.png" target="_blank">
+            <img src="./certificate/167ipv4.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook java spring">
+          <a href="./certificate/168javaspring.png" target="_blank">
+            <img src="./certificate/168javaspring.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook javafx">
+          <a href="./certificate/169javafx.png" target="_blank">
+            <img src="./certificate/169javafx.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook ios development">
+          <a href="./certificate/170iosdev.png" target="_blank">
+            <img src="./certificate/170iosdev.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook julia">
+          <a href="./certificate/171julia.png" target="_blank">
+            <img src="./certificate/171julia.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook ktor">
+          <a href="./certificate/172ktor.png" target="_blank">
+            <img src="./certificate/172ktor.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook kivy">
+          <a href="./certificate/173kivy.png" target="_blank">
+            <img src="./certificate/173kivy.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook lisp">
+          <a href="./certificate/174lisp.png" target="_blank">
+            <img src="./certificate/174lisp.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="laravel google programminghub Facebook">
+          <a href="./certificate/175laravel.png" target="_blank">
+            <img src="./certificate/175laravel.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="lua google programminghub Facebook">
+          <a href="./certificate/176lua.png" target="_blank">
+            <img src="./certificate/176lua.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="machine learning python google programminghub Facebook">
+          <a href="./certificate/177mlbypy.png" target="_blank">
+            <img src="./certificate/177mlbypy.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook matlab">
+          <a href="./certificate/178matlab.png" target="_blank">
+            <img src="./certificate/178matlab.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook nlp">
+          <a href="./certificate/179nlp.png" target="_blank">
+            <img src="./certificate/179nlp.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook nft">
+          <a href="./certificate/180makeyrnft.png" target="_blank">
+            <img src="./certificate/180makeyrnft.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook artificial intelligence python">
+          <a href="./certificate/181pyforai.png" target="_blank">
+            <img src="./certificate/181pyforai.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook perl">
+          <a href="./certificate/182peral.png" target="_blank">
+            <img src="./certificate/182peral.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook rdbms">
+          <a href="./certificate/183rdbms.png" target="_blank">
+            <img src="./certificate/183rdbms.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook linux">
+          <a href="./certificate/184linux.png" target="_blank">
+            <img src="./certificate/184linux.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook ionic app development">
+          <a href="./certificate/185ionicappdev.png" target="_blank">
+            <img src="./certificate/185ionicappdev.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook hacking advance">
+          <a href="./certificate/186hackadv.png" target="_blank">
+            <img src="./certificate/186hackadv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook elenium automated testing">
+          <a href="./certificate/187selniumtesting.png" target="_blank">
+            <img src="./certificate/187selniumtesting.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook gatsby">
+          <a href="./certificate/188gatsby.png" target="_blank">
+            <img src="./certificate/188gatsby.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="android development google programminghub Facebook">
+          <a href="./certificate/189androiddev.png" target="_blank">
+            <img src="./certificate/189androiddev.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook tableau">
+          <a href="./certificate/190tablua.png" target="_blank">
+            <img src="./certificate/190tablua.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook VB6">
+          <a href="./certificate/191vb6.png" target="_blank">
+            <img src="./certificate/191vb6.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook swiftui">
+          <a href="./certificate/192swiftui.png" target="_blank">
+            <img src="./certificate/192swiftui.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook svelte webapp">
+          <a href="./certificate/193servletwebap.png" target="_blank">
+            <img src="./certificate/193servletwebap.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook shell scripting">
+          <a href="./certificate/194shellscript.png" target="_blank">
+            <img src="./certificate/194shellscript.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook scala">
+          <a href="./certificate/195scala.png" target="_blank">
+            <img src="./certificate/195scala.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook sass scss">
+          <a href="./certificate/196sass.png" target="_blank">
+            <img src="./certificate/196sass.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook rust">
+          <a href="./certificate/197rust.png" target="_blank">
+            <img src="./certificate/197rust.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook robotics automation">
+          <a href="./certificate/198rpa.png" target="_blank">
+            <img src="./certificate/198rpa.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook vb.net vbdotnet">
+          <a href="./certificate/199vbdotnet.png" target="_blank">
+            <img src="./certificate/199vbdotnet.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook aws cloud">
+          <a href="./certificate/200aws.png" target="_blank">
+            <img src="./certificate/200aws.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook cloud computing">
+          <a href="./certificate/201cloudcomp.png" target="_blank">
+            <img src="./certificate/201cloudcomp.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook computer network">
+          <a href="./certificate/202compnetwork.png" target="_blank">
+            <img src="./certificate/202compnetwork.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook foundation">
+          <a href="./certificate/203foundcss.png" target="_blank">
+            <img src="./certificate/203foundcss.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook cryptocurrency">
+          <a href="./certificate/204owncryptocurency.png" target="_blank">
+            <img src="./certificate/204owncryptocurency.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook meteorjs">
+          <a href="./certificate/205metorjs.png" target="_blank">
+            <img src="./certificate/205metorjs.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook oops">
+          <a href="./certificate/206oops.png" target="_blank">
+            <img src="./certificate/206oops.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook material design">
+          <a href="./certificate/207matreldesign.png" target="_blank">
+            <img src="./certificate/207matreldesign.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook shoping ads">
+          <a href="./certificate/208googlesopads.png" target="_blank">
+            <img src="./certificate/208googlesopads.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook wordpress">
+          <a href="./certificate/209wordpress.png" target="_blank">
+            <img src="./certificate/209wordpress.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook video ads">
+          <a href="./certificate/210googlevdoads.png" target="_blank">
+            <img src="./certificate/210googlevdoads.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook ads">
+          <a href="./certificate/211googleadsmesm.png" target="_blank">
+            <img src="./certificate/211googleadsmesm.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook digital marketing">
+          <a href="./certificate/212digitalmarketing.png" target="_blank">
+            <img src="./certificate/212digitalmarketing.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook statical analytics">
+          <a href="./certificate/213staticalany.png" target="_blank">
+            <img src="./certificate/213staticalany.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="digital marketing advance">
+          <a href="./certificate/214digitaladv.png" target="_blank">
+            <img src="./certificate/214digitaladv.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook buildweb">
+          <a href="./certificate/215buildweb.png" target="_blank">
+            <img src="./certificate/215buildweb.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook social meadia">
+          <a href="./certificate/216socialmediamark.png" target="_blank">
+            <img src="./certificate/216socialmediamark.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="google programminghub Facebook uxui">
+          <a href="./certificate/217uxui.png" target="_blank">
+            <img src="./certificate/217uxui.png" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+        <div data-aos="flip-down" data-aos-duration="500" class="col-lg-4 col-md-4 col-sm-6 col-12 image-box" data-name="bollywood singing competition">
+          <a href="./certificate/218singbolly.jpg" target="_blank">
+            <img src="./certificate/218singbolly.jpg" class="img-fluid" alt="certificate image">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- ======================================== 
+          Our footer Section   
+    ========================================  -->
+  <footer class="section section-footer section--hidden">
+    <div class="container grid grid-four-col">
+      <div class="f-about">
+        <h3>About</h3>
+        <p data-aos="flip-up" data-aos-duration="400">I hope you like my website if you want to collab or build
+          something special then direct contact me. I'am also
+          available for your help.</p>
+      </div>
+
+      <div class="f-links">
+        <h3>Links</h3>
+        <ul>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/index.html">Home</a></li>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/about.html">About</a></li>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/service.html">Services</a></li>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/certificate.html">Certificae</a></li>
+
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="f-services">
+        <h3>Services</h3>
+        <ul>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/contact.html">Game-soft~ Dev</a></li>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/contact.html">web development</a></li>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/contact.html">Singing-Rapping</a></li>
+
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/contact.html">On-Offline Classes</a></li>
+          <li><span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span><a href="/contact.html">and So many ...</a></li>
+        </ul>
+      </div>
+
+      <div class="f-address">
+        <h3>Have a Questions?</h3>
+        <address>
+          <div>
+            <p> <span>
+                <ion-icon name="location-outline"></ion-icon>
+              </span> U . P ,India </p>
+          </div>
+
+          <div>
+            <p> <span>
+                <ion-icon name="call-outline"></ion-icon>
+              </span> <a href="tel:+919598461421"> +91 9598461421 </a></p>
+          </div>
+
+          <div>
+            <p> <span>
+                <ion-icon name="mail-outline"></ion-icon>
+              </span> <a href="mailto:aauryagk12@gmail.com"> aauryagk12@gmail.com </a> </p>
+          </div>
+        </address>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="f-social-icons">
+        <a href="https://codepen.io/aryan-maurya-the-bashful" target="_blank">
+          <ion-icon class="icons" name="logo-codepen"></ion-icon>
+        </a>
+
+        <a href="https://www.facebook.com/profile.php?id=100042981172229" target="_blank">
+          <ion-icon class="icons" name="logo-facebook"></ion-icon>
+        </a>
+
+        <a href="https://www.youtube.com/@aryanmauryamr.perfect1426" target="_blank">
+          <ion-icon class="icons" name="logo-youtube"></ion-icon>
+        </a>
+
+        <a href="https://github.com/Aryan0-1Maurya" target="_blank">
+          <ion-icon class="icons" name="logo-github"></ion-icon>
+        </a>
+      </div>
+
+      <div class="f-credits">
+        <p data-aos="flip-down" data-aos-duration="400">Copyright ©2022 All rights reserved | This template is made with
+          ❤ by Aryan Maurya</p>
+      </div>
+    </div>
+
+  </footer>
+  
+
+<!-- ======================================== 
+         js Section Start  
+    ========================================  -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+    integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    
+    $(document).ready(function() {
+        function filterImages() {
+          var value = $('#searchInput').val().toLowerCase();
+          $('.image-box').each(function() {
+            var dataName = $(this).data('name').toLowerCase();
+            if (dataName.indexOf(value) > -1) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        }
+    
+        $('#searchInput').on('keyup', function(event) {
+          if (event.key === 'Enter') {
+            filterImages();
+          }
+        });
+    
+        $('.image-box a').magnificPopup({
+          type: 'image',
+          gallery: {
+            enabled: true
+          }
+        });
+      });     
+
+      var icon = document.getElementById("icon");
+  icon.onclick = function(){
+    document.body.classList.toggle("dark-theme");
+  }
+
+const mobile_nav = document.querySelector(".mobile-navbar-btn");
+const nav_header = document.querySelector(".header");
+
+const toggleNavbar = () => {
+  nav_header.classList.toggle("active");
+};
+
+// Check if mobile_nav and nav_header exist before adding the event listener
+if (mobile_nav && nav_header) {
+  mobile_nav.addEventListener("click", toggleNavbar);
+}
+
+const footerElm2 = document.querySelector(".section-footer");
+
+const scrollElement2 = document.createElement("div");
+scrollElement2.classList.add("scrollTop-style");
+
+// I am adding the button element inside the div element
+scrollElement2.innerHTML = `<ion-icon name="arrow-up-outline" class="scroll-top"></ion-icon>`;
+
+// add to the bottom of the page
+footerElm2.after(scrollElement2);
+
+// deleting the dom element
+const scrollTop2 = () => {
+    sectionGall.scrollIntoView({ behavior: "smooth" });
+};
+
+document.querySelector(".scroll-top").addEventListener("click", scrollTop2);
+
+// get the data attributes
+sectionGall=document.querySelector(".section-gallary");
+
+///////////////////////sticky nav\\\\\\\\\\\\\
+const sectionImgGall = document.querySelector("#searchInput");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        const ent = entries[0];
+        console.log(ent);
+        !ent.isIntersecting ?
+            document.body.classList.add("sticky") :
+            document.body.classList.remove("sticky");
+    }, {
+        // viewport
+        root: null,
+        threshold: 0,
+        rootMargin: "-100px",
+    }
+);
+// when the hero section end part reached then we need to show the sticky navigation
+observer.observe(sectionImgGall);
+    </script>
+    <script src="index.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+</body>
+</html>
+
+
